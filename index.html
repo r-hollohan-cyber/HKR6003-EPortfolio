@@ -3,111 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKR 6003 ePortfolio | Health Promotion in Canada</title>
+    <title>HKR 6003 ePortfolio | Robbie Hollohan</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #16a085;
-            --bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --text: #333333;
+            --primary-color: #1e3a8a;
+            --secondary-color: #0d9488;
+            --background-color: #f8fafc;
+            --card-background: #ffffff;
+            --text-color: #334155;
+            --heading-color: #0f172a;
+            --border-color: #e2e8f0;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background-color: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
             margin: 0;
             padding: 0;
         }
 
         header {
-            background-color: var(--primary);
-            color: white;
-            padding: 2.5rem 1rem;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 2.5rem 1.5rem;
             text-align: center;
         }
 
         header h1 {
             margin: 0 0 0.5rem 0;
-            font-size: 2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
         }
 
         header p {
             margin: 0;
+            font-size: 1.1rem;
             opacity: 0.9;
         }
 
-        nav {
-            background-color: #34495e;
-            display: flex;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav a {
-            color: white;
-            padding: 1rem 1.5rem;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            background-color: var(--accent);
-        }
-
         .container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 2rem auto;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
 
         .card {
-            background: var(--card-bg);
-            border-radius: 8px;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .week-tag {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
         }
 
         h2 {
-            color: var(--primary);
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0.5rem;
+            color: var(--heading-color);
             margin-top: 0;
+            font-size: 1.75rem;
         }
 
         h3 {
-            color: var(--primary);
-            margin-top: 1.5rem;
+            color: var(--heading-color);
+            margin-top: 2rem;
+            font-size: 1.25rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
         }
 
-        .artifact-box {
-            background-color: #eef7f6;
-            border-left: 4px solid var(--accent);
-            padding: 1rem 1.2rem;
-            margin: 1.2rem 0;
-            border-radius: 0 4px 4px 0;
+        p {
+            margin-bottom: 1.25rem;
+            text-align: justify;
         }
 
-        .reflection-text p {
+        .artifact-container {
+            text-align: center;
+            margin: 2rem 0;
+            background-color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .artifact-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .artifact-caption {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        .references {
+            font-size: 0.95rem;
+        }
+
+        .hanging-indent {
+            padding-left: 2.5rem;
+            text-indent: -2.5rem;
             margin-bottom: 1rem;
         }
 
         footer {
             text-align: center;
             padding: 2rem;
-            color: #7f8c8d;
             font-size: 0.9rem;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
         }
 
-        hr {
-            border: 0;
-            border-top: 1px solid #eee;
-            margin: 2.5rem 0;
+        @media (max-width: 640px) {
+            .card {
+                padding: 1.25rem;
+            }
+            header h1 {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
@@ -115,88 +144,45 @@
 
     <header>
         <h1>HKR 6003: Health Promotion in Canada</h1>
-        <p>Learning ePortfolio | Memorial University of Newfoundland</p>
+        <p>Learning ePortfolio | Robbie Hollohan (Student ID: 202581268)</p>
     </header>
 
-    <nav>
-        <a href="#about">About</a>
-        <a href="#part1">Part I (Weeks 1–6)</a>
-        <a href="#applied">Applied Theory</a>
-    </nav>
-
     <div class="container">
-        
-        <!-- About Section -->
-        <section id="about" class="card">
-            <h2>Course & Local Context</h2>
-            <p>Welcome to my learning ePortfolio for HKR 6003. This platform documents my weekly critical reflections and creative artifacts analyzing health promotion theories across Canada. Throughout this collection, I critically examine individualistic health models by connecting course theory directly to social, economic, and infrastructure realities within the Cape Breton Regional Municipality (CBRM).</p>
-        </section>
+        <article class="card">
+            <span class="week-tag">Week 1 Entry</span>
+            <h2>Week 1 Reflection: Policy Gaps and the Reality of Teaching PE in the CBRM</h2>
 
-        <!-- Part I Section -->
-        <section id="part1" class="card">
-            <h2>Part I: Critical Reflections & Artifacts</h2>
+            <p>The readings this week made me think more about something I see in my own teaching: how much responsibility we place on individuals to be healthy without always looking at what makes healthy choices possible in the first place. Hancock (2011) points out that Canada hasn't actually shifted resources into prevention, despite all the talk about health promotion. Much of the focus remains on treating illness rather than preventing it. Raphael et al. (2020) make a similar point about how health is often understood mainly through personal choices such as diet and exercise, without enough attention to the conditions people are living in.</p>
 
-            <!-- Week 1 -->
-            <article>
-                <h3>Week 1: Rethinking Health Promotion in the CBRM</h3>
-                <div class="artifact-box">
-                    <strong>Weekly Artifact (Canva):</strong> 
-                    <a href="#" target="_blank">View Week 1 Visual Artifact</a> 
-                    <small style="display:block; color:#666; margin-top:4px;">(Replace link with your Canva public view link or embed code)</small>
-                </div>
-                <div class="reflection-text">
-                    <p>Before starting this course, I honestly thought health promotion was mostly about education. I figured we just needed to give people the right information so they could make better choices. But reading about the social determinants of health made me reconsider how useful that information really is if someone does not have the resources to act on it.</p>
-                    <p>It made me think a lot about communities around here in the CBRM. It is easy to tell people in River Ryan, New Waterford, or Glace Bay that they need to eat more fresh vegetables to prevent disease. But that advice ignores high grocery prices and a local transit system where taking the bus to a major grocery store can turn a simple errand into a multi-hour hassle if you do not own a car.</p>
-                    <p>This made me question whether some of our local health programs put too much responsibility on individuals. People face major barriers they cannot control. If we just focus on the medical model and warn people about potential diseases, we ignore the root of the problem. I am still trying to figure out how we can promote healthy habits at an individual level without ignoring those larger systemic issues in our community.</p>
-                </div>
-            </article>
+            <p>As a PE teacher here in Cape Breton, I see some of these challenges in my own school community. PE can teach movement skills and encourage students to be active, but that doesn't mean every student has the same opportunity to be active outside of school. Many families are dealing with real financial strain. Kids show up in shoes that are falling apart. Families can't always afford gym clothes or water bottles. In winter, when we want to take classes outside, not every student has proper winter gear. When we organize school sports like soccer, games happen right after school in communities that are far away with no bus service, so families can't always get their kids there.</p>
 
-            <hr>
+            <p>Our breakfast and lunch programs are one example of how the school can help address some of these barriers. Knowing that students can get something to eat at school matters, especially when families are under financial pressure. It also makes me question how effective standard health-promotion messaging can be when students don't have the same resources or opportunities outside of school.</p>
 
-            <!-- Week 2 -->
-            <article>
-                <h3>Week 2: Motivation Isn't Everything</h3>
-                <div class="artifact-box">
-                    <strong>Weekly Artifact (Canva):</strong> 
-                    <a href="#" target="_blank">View Week 2 Visual Artifact</a>
-                    <small style="display:block; color:#666; margin-top:4px;">(Replace link with your Canva public view link or embed code)</small>
-                </div>
-                <div class="reflection-text">
-                    <p>Reading about Robert Crawford’s (1980) concept of healthism challenged how I view personal responsibility. It made me realize how often health is discussed in our culture as though people have total control over their outcomes.</p>
-                    <p>I do not think individual behaviour models like the Health Belief Model are useless. Understanding personal risk and finding motivation obviously matter, as the study by Kim et al. (2012) showed. The problem, as I see it, is assuming motivation is enough on its own. Knowing the risks of a disease does not give someone the extra income needed to join a local recreation program or buy healthier food.</p>
-                    <p>Quennerstedt and colleagues (2010) point out the difference between just teaching health rules and actually understanding how young people experience health in their daily lives. That distinction resonated with me. It showed how quickly health interventions can turn into victim-blaming if someone does not follow a program, when they really just lacked the environment to succeed. I am still unsure about how health promoters can encourage individual responsibility without turning that responsibility into blame. That seems like one of the harder balances to strike in this field.</p>
-                </div>
-            </article>
+            <p>The video transcript also introduced Eisner's idea of the null curriculum. What stood out to me was that what schools leave out can matter just as much as what they formally teach. In PE and health, we can spend a lot of time talking about being active and making healthy choices without giving much attention to whether students have the resources to follow through on those messages. When we talk about healthy living without recognizing people's financial situations, we can make it sound like being unable to make healthy choices is simply a personal failing.</p>
 
-            <hr>
+            <p>Telling students what they should do is only part of health promotion. There also needs to be time, funding, and real support to address the barriers families are facing. Even something as simple as organizing a sports activity or an opportunity outside school can involve transportation, equipment, scheduling, and whether families are able to get there. Teachers are already doing a lot, so this kind of work needs support beyond the classroom.</p>
 
-            <!-- Week 3 -->
-            <article>
-                <h3>Week 3: Unlearning the "Healthy Body"</h3>
-                <div class="artifact-box">
-                    <strong>Weekly Artifact (Canva):</strong> 
-                    <a href="#" target="_blank">View Week 3 Visual Artifact</a>
-                    <small style="display:block; color:#666; margin-top:4px;">(Replace link with your Canva public view link or embed code)</small>
-                </div>
-                <div class="reflection-text">
-                    <p>I realized while reading this week's materials that I have often associated looking fit with actually being healthy, even though those two things are not necessarily the same.</p>
-                    <p>The article by Webb and colleagues (2008) on the cult of the body in physical education made me rethink that assumption. The expectation for PE teachers and students to look a certain way to be considered healthy role models creates an unnecessary barrier (Webb et al., 2008). Judging fitness by appearance can easily push kids away from physical activity altogether.</p>
-                    <p>What struck me most was Oliver’s (2006) discussion of obesity discourses. My interpretation of Oliver's (2006) argument is that framing weight strictly as a disease or an epidemic can end up serving the financial and political interests of the weight-loss industry more than public health itself. That shift in perspective was eye-opening because it moves the focus away from social conditions, like the high child poverty rates we see documented in Cape Breton, and puts all the attention back on individual bodies.</p>
-                    <p>Instead of focusing so heavily on weight and physical appearance, health promotion should focus on making recreation inclusive and supportive of overall well-being. But I am left wondering how we actually shift public perception when the image of the healthy body is so deeply ingrained in our culture and school systems.</p>
-                </div>
-            </article>
-        </section>
+            <p>I created a Canva graphic this week that maps out our provincial PE outcomes alongside the social determinants of health. I wanted to look more closely at where the curriculum connects with real health factors and where there may be gaps between what we teach and the realities students experience in our school community.</p>
 
-        <!-- Applied Theory Section -->
-        <section id="applied" class="card">
-            <h2>Applied Theory & Final Projects</h2>
-            <p>This section will host the Week 7 Background Paper and the Final Project application strategies.</p>
-        </section>
+            <!-- Artifact Display Section -->
+            <div class="artifact-container">
+                <h3>Weekly Artifact</h3>
+                <img src="week1-infographic.png" alt="Mapping Nova Scotia Elementary PE Outcomes to Social Determinants of Health Infographic">
+                <p class="artifact-caption">Figure 1. Visual mapping of Nova Scotia Elementary PE Curriculum outcomes against key social determinants of health.</p>
+            </div>
 
+            <!-- APA References Section -->
+            <div class="references">
+                <h3>References</h3>
+                <p class="hanging-indent">Cameron, E., McGowan, E., & Memorial University of Newfoundland. (2015). <i>Unit 1 video transcript</i> [Video transcript]. Brightspace.</p>
+                <p class="hanging-indent">Hancock, T. (2011). Health promotion in Canada: 25 years of unfulfilled promise. <i>Health Promotion International, 26</i>(suppl 2), ii263–ii267.</p>
+                <p class="hanging-indent">Raphael, D., Bryant, T., Mikkonen, J., & Raphael, A. (2020). <i>Social determinants of health: The Canadian facts</i> (2nd ed.). York University. https://thecanadianfacts.org/The_Canadian_Facts-2nd_ed.pdf</p>
+            </div>
+        </article>
     </div>
 
     <footer>
-        <p>&copy; HKR 6003 ePortfolio | Memorial University of Newfoundland</p>
+        <p>&copy; 2026 Robbie Hollohan — HKR 6003 ePortfolio</p>
     </footer>
 
 </body>
