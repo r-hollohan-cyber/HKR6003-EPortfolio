@@ -6,136 +6,298 @@
     <title>HKR 6003 ePortfolio | Robbie Hollohan</title>
     <style>
         :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #0d9488;
-            --background-color: #f8fafc;
-            --card-background: #ffffff;
-            --text-color: #334155;
-            --heading-color: #0f172a;
-            --border-color: #e2e8f0;
+            --primary: #1e3a8a;
+            --primary-light: #eff6ff;
+            --accent: #0d9488;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #334155;
+            --text-heading: #0f172a;
+            --border: #e2e8f0;
+            --muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.7;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            margin: 0;
-            padding: 0;
+            color: var(--text-main);
+            background-color: var(--bg);
         }
 
+        /* Top Header */
         header {
-            background-color: var(--primary-color);
+            background-color: var(--primary);
             color: #ffffff;
             padding: 2.5rem 1.5rem;
             text-align: center;
         }
 
         header h1 {
-            margin: 0 0 0.5rem 0;
             font-size: 2.2rem;
             font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
         header p {
-            margin: 0;
             font-size: 1.1rem;
             opacity: 0.9;
         }
 
-        .container {
-            max-width: 900px;
+        /* Main Container Layout */
+        .layout-grid {
+            max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2rem;
         }
 
-        .card {
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
+        /* Sidebar Styling */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
         }
 
-        .week-tag {
-            display: inline-block;
-            background-color: #dbeafe;
-            color: var(--primary-color);
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 1rem auto;
+        }
+
+        .profile-info h3 {
+            text-align: center;
+            color: var(--text-heading);
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-info .role {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--accent);
             font-weight: 600;
-            font-size: 0.875rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
             margin-bottom: 1rem;
         }
 
+        .profile-details {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+
+        .profile-details li {
+            list-style: none;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Nav Tracker */
+        .nav-tracker h4 {
+            color: var(--text-heading);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.875rem;
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .nav-list a:hover {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .nav-list a.active {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+        }
+
+        .status-dot.done {
+            background-color: #10b981;
+        }
+
+        /* Main Content Styling */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .reflection-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .week-badge {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        .unit-badge {
+            background-color: #f0fdf4;
+            color: #166534;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
         h2 {
-            color: var(--heading-color);
-            margin-top: 0;
-            font-size: 1.75rem;
+            color: var(--text-heading);
+            font-size: 1.6rem;
+            margin-bottom: 1.25rem;
         }
 
         h3 {
-            color: var(--heading-color);
+            color: var(--text-heading);
             margin-top: 2rem;
-            font-size: 1.25rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.4rem;
         }
 
         p {
             margin-bottom: 1.25rem;
-            text-align: justify;
         }
 
-        .artifact-container {
+        /* Artifact Display */
+        .artifact-box {
+            background-color: #f1f5f9;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 1.5rem;
             text-align: center;
             margin: 2rem 0;
-            background-color: #f1f5f9;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px dashed #cbd5e1;
         }
 
-        .artifact-container img {
+        .artifact-box img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
 
         .artifact-caption {
-            font-size: 0.9rem;
-            color: #64748b;
+            font-size: 0.875rem;
+            color: var(--muted);
             margin-top: 0.75rem;
             font-style: italic;
         }
 
+        /* References */
         .references {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            margin-top: 2rem;
         }
 
         .hanging-indent {
-            padding-left: 2.5rem;
-            text-indent: -2.5rem;
-            margin-bottom: 1rem;
+            padding-left: 2rem;
+            text-indent: -2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Placeholder Cards for Future Weeks */
+        .placeholder-card {
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            opacity: 0.75;
+        }
+
+        .placeholder-card h3 {
+            border: none;
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--muted);
         }
 
         footer {
             text-align: center;
             padding: 2rem;
             font-size: 0.9rem;
-            color: #64748b;
-            border-top: 1px solid var(--border-color);
+            color: var(--muted);
+            border-top: 1px solid var(--border);
             margin-top: 3rem;
         }
 
-        @media (max-width: 640px) {
-            .card {
-                padding: 1.25rem;
+        @media (max-width: 900px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
             }
-            header h1 {
-                font-size: 1.75rem;
+            aside {
+                order: 2;
+            }
+            main {
+                order: 1;
             }
         }
     </style>
@@ -144,45 +306,104 @@
 
     <header>
         <h1>HKR 6003: Health Promotion in Canada</h1>
-        <p>Learning ePortfolio | Robbie Hollohan (Student ID: 202581268)</p>
+        <p>Master of Physical Education Learning ePortfolio | Memorial University</p>
     </header>
 
-    <div class="container">
-        <article class="card">
-            <span class="week-tag">Week 1 Entry</span>
-            <h2>Week 1 Reflection: Policy Gaps and the Reality of Teaching PE in the CBRM</h2>
-
-            <p>The readings this week made me think more about something I see in my own teaching: how much responsibility we place on individuals to be healthy without always looking at what makes healthy choices possible in the first place. Hancock (2011) points out that Canada hasn't actually shifted resources into prevention, despite all the talk about health promotion. Much of the focus remains on treating illness rather than preventing it. Raphael et al. (2020) make a similar point about how health is often understood mainly through personal choices such as diet and exercise, without enough attention to the conditions people are living in.</p>
-
-            <p>As a PE teacher here in Cape Breton, I see some of these challenges in my own school community. PE can teach movement skills and encourage students to be active, but that doesn't mean every student has the same opportunity to be active outside of school. Many families are dealing with real financial strain. Kids show up in shoes that are falling apart. Families can't always afford gym clothes or water bottles. In winter, when we want to take classes outside, not every student has proper winter gear. When we organize school sports like soccer, games happen right after school in communities that are far away with no bus service, so families can't always get their kids there.</p>
-
-            <p>Our breakfast and lunch programs are one example of how the school can help address some of these barriers. Knowing that students can get something to eat at school matters, especially when families are under financial pressure. It also makes me question how effective standard health-promotion messaging can be when students don't have the same resources or opportunities outside of school.</p>
-
-            <p>The video transcript also introduced Eisner's idea of the null curriculum. What stood out to me was that what schools leave out can matter just as much as what they formally teach. In PE and health, we can spend a lot of time talking about being active and making healthy choices without giving much attention to whether students have the resources to follow through on those messages. When we talk about healthy living without recognizing people's financial situations, we can make it sound like being unable to make healthy choices is simply a personal failing.</p>
-
-            <p>Telling students what they should do is only part of health promotion. There also needs to be time, funding, and real support to address the barriers families are facing. Even something as simple as organizing a sports activity or an opportunity outside school can involve transportation, equipment, scheduling, and whether families are able to get there. Teachers are already doing a lot, so this kind of work needs support beyond the classroom.</p>
-
-            <p>I created a Canva graphic this week that maps out our provincial PE outcomes alongside the social determinants of health. I wanted to look more closely at where the curriculum connects with real health factors and where there may be gaps between what we teach and the realities students experience in our school community.</p>
-
-            <!-- Artifact Display Section -->
-            <div class="artifact-container">
-                <h3>Weekly Artifact</h3>
-                <img src="week1-infographic.png" alt="Mapping Nova Scotia Elementary PE Outcomes to Social Determinants of Health Infographic">
-                <p class="artifact-caption">Figure 1. Visual mapping of Nova Scotia Elementary PE Curriculum outcomes against key social determinants of health.</p>
+    <div class="layout-grid">
+        
+        <!-- Sidebar Column -->
+        <aside>
+            <!-- Educator Profile -->
+            <div class="sidebar-card">
+                <div class="profile-avatar">RH</div>
+                <div class="profile-info">
+                    <h3>Robbie Hollohan</h3>
+                    <p class="role">Physical Education Teacher</p>
+                </div>
+                <ul class="profile-details">
+                    <li><strong>School:</strong> Greenfield Elementary</li>
+                    <li><strong>Community:</strong> New Waterford, CBVRCE</li>
+                    <li><strong>Region:</strong> Cape Breton Island, NS</li>
+                    <li><strong>Student ID:</strong> 202581268</li>
+                </ul>
             </div>
 
-            <!-- APA References Section -->
-            <div class="references">
-                <h3>References</h3>
-                <p class="hanging-indent">Cameron, E., McGowan, E., & Memorial University of Newfoundland. (2015). <i>Unit 1 video transcript</i> [Video transcript]. Brightspace.</p>
-                <p class="hanging-indent">Hancock, T. (2011). Health promotion in Canada: 25 years of unfulfilled promise. <i>Health Promotion International, 26</i>(suppl 2), ii263–ii267.</p>
-                <p class="hanging-indent">Raphael, D., Bryant, T., Mikkonen, J., & Raphael, A. (2020). <i>Social determinants of health: The Canadian facts</i> (2nd ed.). York University. https://thecanadianfacts.org/The_Canadian_Facts-2nd_ed.pdf</p>
+            <!-- Course Schedule / Entry Navigation -->
+            <div class="sidebar-card nav-tracker">
+                <h4>Weekly Entry Index</h4>
+                <ul class="nav-list">
+                    <li><a href="#week-1" class="active"><span>Week 1: Policy & PE Reality</span><span class="status-dot done"></span></a></li>
+                    <li><a href="#week-2"><span>Week 2: Disease Prevention</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-3"><span>Week 3: Behavior Theories</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-4"><span>Week 4: Models & Critiques</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-5"><span>Week 5: Contextual Perspectives</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-6"><span>Week 6: Portfolio Review #1</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-7"><span>Week 7: Program Planning</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-8"><span>Week 8: Background Paper</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-9"><span>Week 9: Case Studies (Pt 1)</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-10"><span>Week 10: Case Studies (Pt 2)</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-11"><span>Week 11: Future of Promotion</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-12"><span>Week 12: Global Lessons</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-13"><span>Week 13: Course Wrap-Up</span><span class="status-dot"></span></a></li>
+                </ul>
             </div>
-        </article>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main>
+
+            <!-- Week 1 Critical Reflection -->
+            <article class="reflection-card" id="week-1">
+                <div class="card-header">
+                    <span class="week-badge">Week 1 Entry</span>
+                    <span class="unit-badge">Unit 1: Foundations</span>
+                </div>
+                
+                <h2>Week 1 Reflection: Policy Gaps and the Reality of Teaching PE in the CBRM</h2>
+
+                <p>The readings this week made me think more about something I see in my own teaching: how much responsibility we place on individuals to be healthy without always looking at what makes healthy choices possible in the first place. Hancock (2011) points out that Canada hasn't actually shifted resources into prevention, despite all the talk about health promotion. Much of the focus remains on treating illness rather than preventing it. Raphael et al. (2020) make a similar point about how health is often understood mainly through personal choices such as diet and exercise, without enough attention to the conditions people are living in.</p>
+
+                <p>As a PE teacher here in Cape Breton, I see some of these challenges in my own school community. PE can teach movement skills and encourage students to be active, but that doesn't mean every student has the same opportunity to be active outside of school. Many families are dealing with real financial strain. Kids show up in shoes that are falling apart. Families can't always afford gym clothes or water bottles. In winter, when we want to take classes outside, not every student has proper winter gear. When we organize school sports like soccer, games happen right after school in communities that are far away with no bus service, so families can't always get their kids there.</p>
+
+                <p>Our breakfast and lunch programs are one example of how the school can help address some of these barriers. Knowing that students can get something to eat at school matters, especially when families are under financial pressure. It also makes me question how effective standard health-promotion messaging can be when students don't have the same resources or opportunities outside of school.</p>
+
+                <p>The video transcript also introduced Eisner's idea of the null curriculum. What stood out to me was that what schools leave out can matter just as much as what they formally teach. In PE and health, we can spend a lot of time talking about being active and making healthy choices without giving much attention to whether students have the resources to follow through on those messages. When we talk about healthy living without recognizing people's financial situations, we can make it sound like being unable to make healthy choices is simply a personal failing.</p>
+
+                <p>Telling students what they should do is only part of health promotion. There also needs to be time, funding, and real support to address the barriers families are facing. Even something as simple as organizing a sports activity or an opportunity outside school can involve transportation, equipment, scheduling, and whether families are able to get there. Teachers are already doing a lot, so this kind of work needs support beyond the classroom.</p>
+
+                <p>I created a Canva graphic this week that maps out our provincial PE outcomes alongside the social determinants of health. I wanted to look more closely at where the curriculum connects with real health factors and where there may be gaps between what we teach and the realities students experience in our school community.</p>
+
+                <!-- Artifact Section -->
+                <div class="artifact-box">
+                    <h3>Weekly Artifact</h3>
+                    <img src="week1-infographic.png" alt="Mapping Nova Scotia Elementary PE Outcomes to Social Determinants of Health Infographic">
+                    <p class="artifact-caption">Figure 1. Visual mapping of Nova Scotia Elementary PE Curriculum outcomes against key social determinants of health.</p>
+                </div>
+
+                <!-- References -->
+                <div class="references">
+                    <h3>References</h3>
+                    <p class="hanging-indent">Cameron, E., McGowan, E., & Memorial University of Newfoundland. (2015). <i>Unit 1 video transcript</i> [Video transcript]. Brightspace.</p>
+                    <p class="hanging-indent">Hancock, T. (2011). Health promotion in Canada: 25 years of unfulfilled promise. <i>Health Promotion International, 26</i>(suppl 2), ii263–ii267.</p>
+                    <p class="hanging-indent">Raphael, D., Bryant, T., Mikkonen, J., & Raphael, A. (2020). <i>Social determinants of health: The Canadian facts</i> (2nd ed.). York University. https://thecanadianfacts.org/The_Canadian_Facts-2nd_ed.pdf</p>
+                </div>
+            </article>
+
+            <!-- Upcoming Week Placeholders -->
+            <article class="placeholder-card" id="week-2">
+                <div class="card-header">
+                    <span class="week-badge">Week 2</span>
+                    <span class="unit-badge">Unit 1</span>
+                </div>
+                <h3>Upcoming Entry: Health Promotion, Health Education, and Disease Prevention in Canada</h3>
+                <p style="color: var(--muted); margin: 0;">Weekly reflection and creative artifact will be posted here.</p>
+            </article>
+
+        </main>
     </div>
 
     <footer>
-        <p>&copy; 2026 Robbie Hollohan — HKR 6003 ePortfolio</p>
+        <p>&copy; 2026 Robbie Hollohan — HKR 6003 ePortfolio | Greenfield Elementary, New Waterford, NS</p>
     </footer>
 
 </body>
