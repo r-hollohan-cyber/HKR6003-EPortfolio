@@ -53,6 +53,320 @@
         .layout-grid {
             max-width: 1200px;
             margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar Styling */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 1rem auto;
+        }
+
+        .profile-info h3 {
+            text-align: center;
+            color: var(--text-heading);
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-info .role {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .profile-details {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-details li {
+            list-style: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .philosophy-quote {
+            background-color: var(--primary-light);
+            border-left: 3px solid var(--primary);
+            padding: 0.85rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.875rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        /* Nav Tracker */
+        .nav-tracker h4 {
+            color: var(--text-heading);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.875rem;
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .nav-list a:hover {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .nav-list a.active {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+        }
+
+        .status-dot.done {
+            background-color: #10b981;
+        }
+
+        /* Main Content Styling */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .reflection-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .week-badge {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        .unit-badge {
+            background-color: #f0fdf4;
+            color: #166534;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        h2 {
+            color: var(--text-heading);
+            font-size: 1.6rem;
+            margin-bottom: 1.25rem;
+        }
+
+        h3 {
+            color: var(--text-heading);
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.4rem;
+        }
+        
+        h4 {
+            color: var(--text-heading);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        /* Artifact Display */
+        .artifact-box {
+            background-color: #f1f5f9;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .artifact-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .artifact-caption {
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+        
+        /* Audio Player container inside artifact box */
+        .audio-container {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* References */
+        .references {
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        .hanging-indent {
+            padding-left: 2rem;
+            text-indent: -2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 900px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+            aside {
+                order: 2;
+            }
+            main {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>HKR 6003: Health Promotion in Canada</h1>
+        <p>Master of Physical Education Learning ePortfolio | Memorial University</p>
+    </header>
+
+    <div class="layout-grid">
+        
+        <!-- Sidebar Column -->
+        <aside>
+            <!-- Educator Profile -->
+            <div class="sidebar-card">
+                <div class="profile-avatar">RH</div>
+                <div class="profile-info">
+                    <h3>Robbie Hollohan</h3>
+                    <p class="role">Physical Education Educator</p>
+                </div>
+                <ul class="profile-details">
+                    <li><strong>Role:</strong> PE Teacher (Primary – Grade 5)</li>
+                    <li><strong>School:</strong> Greenfield Elementary</li>
+                    <li><strong>Board:</strong> CBVRCE</li>
+                    <li><strong>Location:</strong> New Waterford, CB, NS</li>
+                    <li><strong>Student ID:</strong> 202581268</li>
+                </ul>
+                <div class="philosophy-quote">
+                    <strong>Teaching Philosophy:</strong><br>
+                    "I believe in meeting kids right where they are and encouraging them to reach their personal best. My goal is to keep the gym exciting and accessible, providing students with a wide variety of movement and wellness experiences within our provincial curriculum."
+                </div>
+            </div>
+
+            <!-- Course Schedule / Entry Navigation -->
+            <div class="sidebar-card nav-tracker">
+                <h4>Weekly Entry Index</h4>
+                <ul class="nav-list">
+                    <li><a href="#week-1"><span>Week 1: Policy & PE Reality</span><span class="status-dot done"></span></a></li>
+                    <li><a href="#week-2"><span>Week 2: Messages Sent in PE</span><span class="status-dot done"></span></a></li>
+                    <li><a href="#week-3"><span>Week 3: Beliefs & Barriers</span><span class="status-dot done"></span></a></li>
+                    <li><a href="#week-4"><span>Week 4: Models & Critiques</span><span class="status-dot done"></span></a></li>
+                    <li><a href="#week-5"><span>Week 5: Contextual Perspectives</span><span class="status-dot done"></span></a></li>
+                    <li><a href="#week-6"><span>Week 6: Portfolio Review #1</span><span class="status-dot done"></span></a></li>
+                    <li><a href="#week-7"><span>Week 7: Program Planning</span><span class="status-dot done"></span></a></li>
+                    <li><a href="#week-8"><span>Week 8: Background Paper</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-9"><span>Week 9: Case Studies (Pt 1)</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-10"><span>Week 10: Case Studies (Pt 2)</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-11"><span>Week 11: Future of Promotion</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-12"><span>Week 12: Global Lessons</span><span class="status-dot"></span></a></li>
+                    <li><a href="#week-13"><span>Week 13: Course Wrap-Up</span><span class="status-dot"></span></a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main>
             <!-- Week 1 Critical Reflection -->
             <article class="reflection-card" id="week-1">
                 <div class="card-header">
@@ -249,54 +563,94 @@
                 </div>
             </article>
 
-            <!-- Week 6 Critical Reflection -->
-            <article class="reflection-card" id="week-6">
-                <div class="card-header">
-                    <span class="week-badge">Week 6 Entry</span>
-                </div>
+        <!-- Week 6 Critical Reflection -->
+    <article class="reflection-card" id="week-6">
+        <div class="card-header">
+            <span class="week-badge">Week 6 Entry</span>
+        </div>
 
-                <h2>Week 6 Reflection: Who Gets Included in My Gym</h2>
+        <h2>Week 6 Reflection: Who Gets Included in My Gym</h2>
 
-                <p>I try to use my physical education classes to expose students to new games and skills they can use outside of school while sparking an interest in fitness and healthy choices, which fits how Shilling (2004) describes physical education as a way to develop young, healthy citizens despite the various risks present in society. Our school currently focuses on kindness using a calendar with simple daily tasks. Tinning and Glasby (2002) argue that physical education continues to reproduce a cult of the body by emphasizing appearance as a sign of worthiness and using the body to demonstrate self-control and willpower. This argument makes me question whether the interest in fitness I try to build might lead students to focus on how a body looks rather than what it can do.</p>
-                
-                <p>I looked like a stereotypical athlete growing up, so I did not get many comments about my body. In my gym classes, I hear comments about students who are overweight more often than I would like. The students making these comments may not be trying to hurt anyone, but that does not mean the comments have no effect. When I hear them, I either speak to the students involved or bring it up with the whole class and remind them that we need to support each other. Tinning and Glasby (2002) point out that many teachers have a heavy personal investment in the cult of the body through their own subjectivities, which makes it harder for them to notice the side effects of their practices, and since I have not been on the receiving end of those comments, I may be slower than I should be to notice them. González-Calvo et al. (2022) found that future physical education teachers recognized exclusion and bullying over body differences as real parts of the subject and saw the teacher’s role as supporting diversity and teaching respect. The study looked at future teachers rather than educators already working in elementary schools, but the similar comments I regularly hear in my own rural gym classes suggest these challenges are universal. I think the kindness calendar could help, and I would like to add a few activities that get students thinking about what they say to each other during games.</p>
-                
-                <p>In my classes, I find that girls often gravitate toward dance, yoga, and gymnastics, while the major team sports tend to appeal to both boys and girls. This is not true for every student, but I do wonder how much of what I see comes from the activities children are used to seeing boys and girls take part in, and whether that affects what they feel comfortable trying themselves. González-Calvo et al. (2022) discuss how the media can present physical strength and effort as masculine traits while showing girls in different ways. Lately, I have noticed that the boys in my classes seem more willing to try dancing, which may have something to do with Fortnite and its popular dance moves. Tinning and Glasby (2002) explain that media such as advertising, films, and magazines can influence how young people see themselves and others, sometimes teaching them things they might not learn at school. I think Fortnite may be having a similar influence in my gym, as the boys seem more comfortable trying dance moves they might once have avoided. González-Calvo et al. (2022) also discuss how boys can face judgement for taking part in activities seen as feminine, so I see this cultural shift as a positive step toward helping students feel more comfortable trying different types of movement.</p>
-                
-                <p>We usually choose track and field participants based on performance, although I try to include a few students who do not usually take part. When I look closely at that process, family income becomes a clear factor in my gym. Students whose families can afford team registration and extra training often come into physical education with more experience and confidence, giving them a distinct advantage when we select students for school events. The unit video explains that social and economic conditions have a greater influence on health than medical treatment and lifestyle choices alone (Memorial University, n.d.). I see these barriers directly affecting how comfortable students feel when they participate in sports during gym class, as clothing trends and outside club experience dictate who feels like they belong.</p>
-                
-                <p>Developing visual and physical literacy from an early age allows children to think critically about how bodies and physical activity are portrayed (González-Calvo et al., 2022), and I would like to start that work in elementary physical education before students move to high school settings that tend to place more emphasis on testing and appearance. The most practical change I can make is to rethink how I choose students for track and field and other competitive events, because selecting mainly on performance rewards the students who already benefit from outside training and resources. This year I plan to let any interested student try the track events in class before we pick our team, and I will ask whether the school or community recreation could help cover fees for students who cannot afford club registration.</p>
+        <p>I try to use my physical education classes to expose students to new games and skills they can use outside of school while sparking an interest in fitness and healthy choices, which fits how Shilling (2004) describes physical education as a way to develop young, healthy citizens despite the various risks present in society. Our school currently focuses on kindness using a calendar with simple daily tasks. Tinning and Glasby (2002) argue that physical education continues to reproduce a cult of the body by emphasizing appearance as a sign of worthiness and using the body to demonstrate self-control and willpower. This argument makes me question whether the interest in fitness I try to build might lead students to focus on how a body looks rather than what it can do.</p>
+        
+        <p>I looked like a stereotypical athlete growing up, so I did not get many comments about my body. In my gym classes, I hear comments about students who are overweight more often than I would like. The students making these comments may not be trying to hurt anyone, but that does not mean the comments have no effect. When I hear them, I either speak to the students involved or bring it up with the whole class and remind them that we need to support each other. Tinning and Glasby (2002) point out that many teachers have a heavy personal investment in the cult of the body through their own subjectivities, which makes it harder for them to notice the side effects of their practices, and since I have not been on the receiving end of those comments, I may be slower than I should be to notice them. González-Calvo et al. (2022) found that future physical education teachers recognized exclusion and bullying over body differences as real parts of the subject and saw the teacher’s role as supporting diversity and teaching respect. The study looked at future teachers rather than educators already working in elementary schools, but the similar comments I regularly hear in my own rural gym classes suggest these challenges are universal. I think the kindness calendar could help, and I would like to add a few activities that get students thinking about what they say to each other during games.</p>
+        
+        <p>In my classes, I find that girls often gravitate toward dance, yoga, and gymnastics, while the major team sports tend to appeal to both boys and girls. This is not true for every student, but I do wonder how much of what I see comes from the activities children are used to seeing boys and girls take part in, and whether that affects what they feel comfortable trying themselves. González-Calvo et al. (2022) discuss how the media can present physical strength and effort as masculine traits while showing girls in different ways. Lately, I have noticed that the boys in my classes seem more willing to try dancing, which may have something to do with Fortnite and its popular dance moves. Tinning and Glasby (2002) explain that media such as advertising, films, and magazines can influence how young people see themselves and others, sometimes teaching them things they might not learn at school. I think Fortnite may be having a similar influence in my gym, as the boys seem more comfortable trying dance moves they might once have avoided. González-Calvo et al. (2022) also discuss how boys can face judgement for taking part in activities seen as feminine, so I see this cultural shift as a positive step toward helping students feel more comfortable trying different types of movement.</p>
+        
+        <p>We usually choose track and field participants based on performance, although I try to include a few students who do not usually take part. When I look closely at that process, family income becomes a clear factor in my gym. Students whose families can afford team registration and extra training often come into physical education with more experience and confidence, giving them a distinct advantage when we select students for school events. The unit video explains that social and economic conditions have a greater influence on health than medical treatment and lifestyle choices alone (Memorial University, n.d.). I see these barriers directly affecting how comfortable students feel when they participate in sports during gym class, as clothing trends and outside club experience dictate who feels like they belong.</p>
+        
+        <p>Developing visual and physical literacy from an early age allows children to think critically about how bodies and physical activity are portrayed (González-Calvo et al., 2022), and I would like to start that work in elementary physical education before students move to high school settings that tend to place more emphasis on testing and appearance. The most practical change I can make is to rethink how I choose students for track and field and other competitive events, because selecting mainly on performance rewards the students who already benefit from outside training and resources. This year I plan to let any interested student try the track events in class before we pick our team, and I will ask whether the school or community recreation could help cover fees for students who cannot afford club registration.</p>
 
-                <!-- Artifact Section -->
-                <div class="artifact-box">
-                    <h3>Weekly Artifact: Gym Kindness Calendar</h3>
-                    <div class="audio-container" style="text-align: center;">
-                        <img src="week6-calendar.png" alt="November Gym Kindness Calendar focusing on respect, fair play, and effort" style="max-width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    </div>
-                    <p class="artifact-caption">Figure 6. The November Gym Kindness Calendar. Designed for readability and ease of use in the gym, this artifact aligns with the Newfoundland and Labrador Elementary PE affective outcomes. The spaced, actionable tasks encourage inclusive language, respect, and an appreciation for effort over athletic performance.</p>
-                </div>
+        <!-- Artifact Section -->
+        <div class="artifact-box">
+            <h3>Weekly Artifact: Gym Kindness Calendar</h3>
+            <div class="audio-container" style="text-align: center;">
+                <img src="week6-calendar.png" alt="November Gym Kindness Calendar focusing on respect, fair play, and effort" style="max-width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 8px;">
+            </div>
+            <p class="artifact-caption">Figure 6. The November Gym Kindness Calendar. Designed for readability and ease of use in the gym, this artifact aligns with the Newfoundland and Labrador Elementary PE affective outcomes. The spaced, actionable tasks encourage inclusive language, respect, and an appreciation for effort over athletic performance.</p>
+        </div>
 
-               <!-- References -->
-                <div class="references">
-                    <h3>References</h3>
-                    <p class="hanging-indent">González-Calvo, G., Gallego-Lema, V., Gerdin, G., & Bores-García, D. (2022). Body image(s): Problematizing future physical education teachers’ beliefs about the body and physical activity through visual imagery. <i>European Physical Education Review</i>, <i>28</i>(2), 552–572. <a href="https://doi.org/10.1177/1356336X211056214" target="_blank" rel="noopener">https://doi.org/10.1177/1356336X211056214</a></p>
-                    
-                    <p class="hanging-indent">Memorial University. (n.d.). <i>Unit 3 video transcript</i> [Video transcript]. HKR 6003: Health Promotion in Canada, Unit 3 Required Materials.</p>
-                    
-                    <p class="hanging-indent">Shilling, C. (2004). Educating bodies: Schooling and the constitution of society. In J. Evans, B. Davies, & J. Wright (Eds.), <i>Body knowledge and control: Studies in the sociology of physical education and health</i> (pp. xi–xv). Routledge.</p>
-                    
-                    <p class="hanging-indent">Tinning, R., & Glasby, T. (2002). Pedagogical work and the “cult of the body”: Considering the role of HPE in the context of the “New Public Health.” <i>Sport, Education and Society</i>, <i>7</i>(2), 109–119. <a href="https://doi.org/10.1080/1357332022000018814" target="_blank" rel="noopener">https://doi.org/10.1080/1357332022000018814</a></p>
-                </div>
-            </article>
+        <!-- References -->
+        <div class="references">
+            <h3>References</h3>
+            <p class="hanging-indent">González-Calvo, G., Gallego-Lema, V., Gerdin, G., & Bores-García, D. (2022). Body image(s): Problematizing future physical education teachers’ beliefs about the body and physical activity through visual imagery. <i>European Physical Education Review</i>, <i>28</i>(2), 552–572. <a href="https://doi.org/10.1177/1356336X211056214" target="_blank" rel="noopener">https://doi.org/10.1177/1356336X211056214</a></p>
+            
+            <p class="hanging-indent">Memorial University. (n.d.). <i>Unit 3 video transcript</i> [Video transcript]. HKR 6003: Health Promotion in Canada, Unit 3 Required Materials.</p>
+            
+            <p class="hanging-indent">Shilling, C. (2004). Educating bodies: Schooling and the constitution of society. In J. Evans, B. Davies, & J. Wright (Eds.), <i>Body knowledge and control: Studies in the sociology of physical education and health</i> (pp. xi–xv). Routledge.</p>
+            
+            <p class="hanging-indent">Tinning, R., & Glasby, T. (2002). Pedagogical work and the “cult of the body”: Considering the role of HPE in the context of the “New Public Health.” <i>Sport, Education and Society</i>, <i>7</i>(2), 109–119. <a href="https://doi.org/10.1080/1357332022000018814" target="_blank" rel="noopener">https://doi.org/10.1080/1357332022000018814</a></p>
+        </div>
+    </article>
 
-   <!-- Week 7 Critical Reflection -->
-            <article class="reflection-card" id="week-7">
-                <div class="card-header">
-                    <span class="week-badge">Week 7 Entry</span>
-                    <span class="unit-badge">Program Planning</span>
-                </div>
-                <h2>Week 7 Reflection: Planning a Unit Without Asking the Students</h2>
-                
-                <p>When I plan a unit, I usually start with the curriculum outcomes and then think about what will work in practice, which depends on the time of year, whether we can get outside, what equipment is available, and what we have already covered[cite: 4]. After reading the six step planning model from Public Health Ontario (PHO, 2024), I noticed that my planning tends to begin around Step 3, setting the direction, and Step 4, choosing activities[cite: 4]. Step 1 asks planners to decide who will be involved, how decisions will be made and by whom, and what role power and privilege play in those decisions (PHO, 2024)[cite: 4]. I had not thought of my unit planning as having a decision-making structure before this week, but it does, and at the moment I am the only person involved in it[cite: 4].</p>
+    <!-- Week 7 Critical Reflection -->
+    <article class="reflection-card" id="week-7">
+        <div class="card-header">
+            <span class="week-badge">Week 7 Entry</span>
+            <span class="unit-badge">Program Planning</span>
+        </div>
+        <h2>Week 7 Reflection: Planning a Unit Without Asking the Students</h2>
+        
+        <p>When I plan a unit, I usually start with the curriculum outcomes and then think about what will work in practice, which depends on the time of year, whether we can get outside, what equipment is available, and what we have already covered. After reading the six step planning model from Public Health Ontario (PHO, 2024), I noticed that my planning tends to begin around Step 3, setting the direction, and Step 4, choosing activities. Step 1 asks planners to decide who will be involved, how decisions will be made and by whom, and what role power and privilege play in those decisions (PHO, 2024). I had not thought of my unit planning as having a decision-making structure before this week, but it does, and at the moment I am the only person involved in it.</p>
 
-                <p>Step 2 of that model is the situational assessment, which PHO (2025) breaks into six steps of its own, starting with three questions about what the situation is, what is making it better or worse, and what could be done about it[cite: 4]. The information can be primary, collected by the planners themselves, or secondary, collected by someone else (PHO, 2025)[cite: 4]. In my own planning, the closest thing I have to primary data is what I notice when students try a new game and start to lose interest[cite: 4]. The closest thing to secondary data is the curriculum documents[cite: 4]. Neither one tells me why a particular student is hanging back[cite: 4]. PHO (2024) also says a situational assessment should meaningfully involve the intended audience and should look at assets instead of only listing problems, and in my planning the intended audience is rarely asked anything[cite: 4]. I saw the effect of this when setting up four-corner hockey for my middle school students[cite: 4]. I tried to spread out the talent to balance the teams, but because I had not seen them play yet, I had to assume how well they would do based on their usual gym class confidence[cite: 4]. Once the games started, I realized many of the quieter students performed far better than I expected because they played hockey outside of school and were highly motivated
+        <p>Step 2 of that model is the situational assessment, which PHO (2025) breaks into six steps of its own, starting with three questions about what the situation is, what is making it better or worse, and what could be done about it. The information can be primary, collected by the planners themselves, or secondary, collected by someone else (PHO, 2025). In my own planning, the closest thing I have to primary data is what I notice when students try a new game and start to lose interest. The closest thing to secondary data is the curriculum documents. Neither one tells me why a particular student is hanging back. PHO (2024) also says a situational assessment should meaningfully involve the intended audience and should look at assets instead of only listing problems, and in my planning the intended audience is rarely asked anything. I saw the effect of this when setting up four-corner hockey for my middle school students. I tried to spread out the talent to balance the teams, but because I had not seen them play yet, I had to assume how well they would do based on their usual gym class confidence. Once the games started, I realized many of the quieter students performed far better than I expected because they played hockey outside of school and were highly motivated. I had to make trades to keep the games competitive, whereas a few questions to the class beforehand would have shown me those hidden assets. PHO (2025) describes a force field analysis as a visual way to capture the facilitators and barriers affecting a situation, and I think a rough version would work for a unit, since listing what pulls students toward an activity would also show me the interests they already have.</p>
+
+        <p>Most of my adjustments happen during the lesson itself. When I want students to try an activity they have never played, I change the rules, for example by having them score points by passing a soccer ball through scattered pylons instead of shooting on a goalie. This takes some pressure off a regular scrimmage and gets them looking for passing lanes. For students who use wheelchairs, I will offer adaptations such as swapping a bat for a pool noodle, using a softer ball, or pairing them with a classmate. I also frequently end up rebuilding obstacle courses partway through class after noticing a safety problem. One of the questions in PHO (2025) asks what program modifications could feasibly be made to increase the positive effects and reduce the negative ones, which is close to what I already do, except that I usually answer it after the lesson has started.</p>
+
+        <p>Sanchez-Pimienta et al. (2021) argue that health promotion has been built around an idea of control, and they describe an “ethos of connection” based on relationships and Indigenous leadership at M’Wikwedong Indigenous Friendship Centre in Owen Sound, Ontario. The youth co-researchers said that when a change was forced on them it felt like a threat, and they wanted to be asked first whether they wanted help and what it should look like. An elementary gym is a long way from that setting and I do not want to stretch the comparison, but my classes are voluntary only in the sense that a student can sit out, and the choices on offer are still mine. The Unit 4 video made me notice something similar from another direction, since it opens by telling a man with prostate cancer that his health is not out of his control because being active is a lifestyle choice he can make (Memorial University, n.d.). After reading Crawford (1980) on healthism in Week 4, I read that line differently, since he describes health being treated as the individual’s responsibility. I am not arguing that activity does not help. The ending is more personal, because Dr. Jonathan Greenland encourages people to take stock of what they already do, what is available in their area and at home, and who can support them (Memorial University, n.d.), which is very close to what a situational assessment asks of a planner.</p>
+
+        <p>Orava et al. (2017) examined 25 Ontario schools in the early years of the School Food and Beverage Policy and found that the social environment, which covers the relationships and culture around healthy eating, had the weakest support, with 17 schools showing low or decreased support. School staff reported being rarely consulted about healthy eating, and the authors suggest this may have contributed to the lack of extracurricular supports. The few initiatives in that area were run by teachers who gave up lunch breaks and time after school. The study took place in a mostly urban region, so I am cautious about applying it to my rural schools, but the idea that a plan struggles when the people carrying it out were never asked is easy to recognize. PHO (2024) describes planning as iterative, and while I do not intend to stop adjusting during lessons, I will start gathering direct feedback. After we try an unfamiliar game, I plan to ask students what felt awkward, what they liked, and which rule they would change, and then use their answers when I plan the next unit. PHO (2025) notes that when a full situational assessment is not possible, planners can still include parts of one, which suits a teacher with limited planning time, and a few questions at the end of a lesson would be a small version of it. I will never get every activity to work for every student. I can at least stop assuming the student on the bench doesn’t want to try.</p>
+        
+        <!-- Artifact Section -->
+        <div class="artifact-box">
+            <h3>Weekly Artifact: Podcast Recording</h3>
+            <div class="audio-container">
+                <audio controls style="width: 100%;">
+                    <source src="week7-podcast.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <p class="artifact-caption">Figure 7. Week 7 Podcast Audio Reflection discussing program planning and student consultation.</p>
+        </div>
+
+        <!-- References -->
+        <div class="references">
+            <h3>References</h3>
+            <p class="hanging-indent">Crawford, R. (1980). Healthism and the medicalization of everyday life. <i>International Journal of Health Services</i>, <i>10</i>(3), 365–388. https://doi.org/10.2190/3H2H-3XJN-3KAY-G9NY</p>
+            <p class="hanging-indent">Memorial University. (n.d.). <i>Unit 4 video transcript</i> [Video transcript]. HKR 6003: Health Promotion in Canada, Unit 4 Required Materials.</p>
+            <p class="hanging-indent">Orava, T., Manske, S., & Hanning, R. (2017). Support for healthy eating at schools according to the comprehensive school health framework: Evaluation during the early years of the Ontario School Food and Beverage Policy implementation. <i>Health Promotion and Chronic Disease Prevention in Canada</i>, <i>37</i>(9), 303–312. https://doi.org/10.24095/hpcdp.37.9.05</p>
+            <p class="hanging-indent">Public Health Ontario. (2024). <i>Planning health promotion programs</i> [At a glance]. King’s Printer for Ontario. https://www.publichealthontario.ca/-/media/Documents/P/25/planning-health-promotion-programs.pdf</p>
+            <p class="hanging-indent">Public Health Ontario. (2025). <i>Conducting situational assessments</i> (2nd ed.) [At a glance]. King’s Printer for Ontario. https://www.publichealthontario.ca/-/media/documents/focus-on-situational-assessment.pdf</p>
+            <p class="hanging-indent">Sanchez-Pimienta, C. E., Masuda, J., & M’Wikwedong Indigenous Friendship Centre. (2021). From controlling to connecting: M’Wikwedong as a place of urban Indigenous health promotion in Canada. <i>Health Promotion International</i>, <i>36</i>(3), 703–713. https://doi.org/10.1080/09540253.2016.1216953</p>
+        </div>
+    </article>
+
+    </main>
+</div>
+
+<footer>
+    <p>HKR 6003 ePortfolio - Robbie Hollohan</p>
+</footer>
+
+</body>
+</html>
