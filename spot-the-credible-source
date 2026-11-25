@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spot the Credible Source: Digital Health Literacy Mini-Quiz</title>
+
+  <!-- Load Inter font for clean academic/health typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Load Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configure Tailwind to use Inter as the default sans-serif font
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-[#f6f8fa] text-slate-800 font-sans antialiased min-h-screen flex items-center justify-center p-4 sm:p-6">
+
+  <!-- Main Widget Container (compact max-width ~760px for clean GitHub Pages embedding) -->
+  <main class="w-full max-w-[760px] bg-white border border-slate-200/90 rounded-2xl shadow-sm overflow-hidden">
+
+    <!-- Top Header & Progress Section -->
+    <header class="px-5 py-6 sm:px-8 sm:py-7 border-b border-slate-100 bg-gradient-to-b from-white to-slate-50/50">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <!-- Course & Week Badge -->
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-[#0f5c6e]/10 text-[#0f5c6e]">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          HKR 6003 &bull; Week 11 Interactive Artifact
+        </span>
+
+        <!-- Live Score Pill (shown during quiz) -->
+        <span id="live-score-pill" class="text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+          Score: <strong id="live-score-value" class="text-slate-700">0</strong> / 5
+        </span>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+        Spot the Credible Source
+      </h1>
+      <p class="mt-1.5 text-sm sm:text-base text-slate-600 leading-relaxed">
+        Compare real-world health claims and test how well you can verify online health information.
+      </p>
+
+      <!-- Progress Bar Container -->
+      <div id="progress-wrapper" class="mt-5">
+        <div class="flex items-center justify-between text-xs font-medium text-slate-500 mb-1.5">
+          <span id="progress-label">Question 1 of 5</span>
+          <span id="category-label" class="text-[#0f5c6e] font-semibold">Medication &amp; Treatment Claims</span>
+        </div>
+        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+          <div id="progress-bar" class="h-full bg-[#0f5c6e] rounded-full transition-all duration-300 ease-out" style="width: 20%;"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Quiz Interactive Stage -->
+    <section id="quiz-stage" class="px-5 py-6 sm:px-8 sm:py-7" aria-live="polite">
+      <!-- Question Prompt -->
+      <h2 id="question-prompt" class="text-base sm:text-lg font-semibold text-slate-900 leading-snug mb-5">
+        <!-- Populated dynamically by JavaScript -->
+      </h2>
+
+      <!-- Clickable Source Cards Grid -->
+      <div id="cards-container" class="space-y-3.5">
+        <!-- Populated dynamically by JavaScript -->
+      </div>
+
+      <!-- Feedback Box (hidden until user selects a card) -->
+      <div id="feedback-box" class="hidden mt-5 p-4 sm:p-5 rounded-xl border transition-all duration-200">
+        <div class="flex items-start gap-3">
+          <div id="feedback-icon" class="shrink-0 mt-0.5"></div>
+          <div class="space-y-1.5">
+            <div class="flex flex-wrap items-center gap-2">
+              <span id="feedback-status" class="text-sm font-bold"></span>
+              <span class="text-xs font-semibold uppercase tracking-wider opacity-75">&bull; Why?</span>
+            </div>
+            <p id="feedback-text" class="text-sm leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer (Next Question Button) -->
+      <div id="next-action-row" class="hidden mt-6 flex justify-end">
+        <button
+          id="next-btn"
+          type="button"
+          class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#0f5c6e] hover:bg-[#0b4857] active:scale-[0.99] text-white text-sm font-semibold shadow-sm transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0f5c6e] w-full sm:w-auto"
+        >
+          <span id="next-btn-label">Next Question</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- End Screen / Results Stage (hidden until quiz completes) -->
+    <section id="results-stage" class="hidden px-5 py-6 sm:px-8 sm:py-8">
+      <!-- Score Summary Banner -->
+      <div class="text-center p-6 rounded-2xl bg-slate-50 border border-slate-200/80">
+        <span class="inline-block text-xs font-semibold uppercase tracking-wider text-[#0f5c6e] mb-2">
+          Quiz Complete
+        </span>
+        <div class="flex items-baseline justify-center gap-1.5">
+          <span id="final-score-num" class="text-4xl sm:text-5xl font-bold text-slate-900">0</span>
+          <span class="text-xl sm:text-2xl font-semibold text-slate-400">/ 5</span>
+        </div>
+        <h2 id="final-headline" class="mt-2 text-lg sm:text-xl font-bold text-slate-900"></h2>
+        <p id="final-message" class="mt-1.5 text-sm text-slate-600 max-w-lg mx-auto leading-relaxed"></p>
+
+        <div class="mt-5">
+          <button
+            id="retake-btn"
+            type="button"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#0f5c6e] hover:bg-[#0b4857] active:scale-[0.99] text-white text-sm font-semibold shadow-sm transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0f5c6e]"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            Retake Quiz
+          </button>
+        </div>
+      </div>
+
+      <!-- Compact 3-Step Source Check Takeaway Box -->
+      <div class="mt-6 p-5 rounded-2xl bg-[#0f5c6e]/[0.04] border border-[#0f5c6e]/20">
+        <div class="flex items-center gap-2 mb-3.5">
+          <svg class="w-5 h-5 text-[#0f5c6e]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+          </svg>
+          <h3 class="text-sm sm:text-base font-bold text-[#0f5c6e]">
+            3-Step Source Check for Online Health Information
+          </h3>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200/80">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#0f5c6e] text-white text-xs font-bold mb-2">1</span>
+            <h4 class="text-sm font-semibold text-slate-900">Check the Credentials</h4>
+            <p class="mt-1 text-xs text-slate-600 leading-relaxed">
+              Look for qualified health professionals, recognized public health bodies, or clear author qualifications.
+            </p>
+          </div>
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200/80">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#0f5c6e] text-white text-xs font-bold mb-2">2</span>
+            <h4 class="text-sm font-semibold text-slate-900">Look for Review &amp; Evidence</h4>
+            <p class="mt-1 text-xs text-slate-600 leading-relaxed">
+              Check for clinician review badges, citations, and update dates—watch out for miracle cures or ad-heavy pages.
+            </p>
+          </div>
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200/80">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#0f5c6e] text-white text-xs font-bold mb-2">3</span>
+            <h4 class="text-sm font-semibold text-slate-900">Consider the Context</h4>
+            <p class="mt-1 text-xs text-slate-600 leading-relaxed">
+              Good health advice respects real-life factors like income, culture, and environment—and never replaces your doctor.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- APA 7th Edition References Footer -->
+      <footer class="mt-6 pt-5 border-t border-slate-200">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">
+          References
+        </h3>
+        <div class="space-y-2 text-xs text-slate-600 leading-relaxed">
+          <p class="pl-6 -indent-6">
+            Cameron, E., &amp; McGowan, E. (2015). <em>Unit 6 video transcript</em> [Video transcript]. HKR 6003: Health Promotion in Canada, Memorial University of Newfoundland.
+          </p>
+          <p class="pl-6 -indent-6">
+            Health Canada. (1997). <em>Health promotion in Canada: A case study</em>.
+          </p>
+          <p class="pl-6 -indent-6">
+            World Health Organization. (2018). <em>Promoting health: Guide to national implementation of the Shanghai Declaration</em> (WHO/NMH/PND/18.2). <a href="https://www.who.int/publications/i/item/WHO-NMH-PND-18.2" target="_blank" rel="noopener noreferrer" class="text-[#0f5c6e] underline hover:text-[#0b4857] break-all">https://www.who.int/publications/i/item/WHO-NMH-PND-18.2</a>
+          </p>
+        </div>
+      </footer>
+    </section>
+
+    <!-- Error Fallback Container (hidden unless unexpected error occurs) -->
+    <div id="error-box" class="hidden m-6 p-4 rounded-xl bg-[#fef2f2] border border-[#991b1b]/30 text-[#991b1b] text-sm">
+      Something went wrong loading the quiz. Please refresh the page to try again.
+    </div>
+  </main>
+
+  <script>
+    /**
+     * Spot the Credible Source: Digital Health Literacy Mini-Quiz
+     * Self-contained interactive artifact for HKR 6003 (Week 11).
+     */
+
+    // Quiz data containing all 5 health promotion scenarios, source cards, and feedback
+    const QUIZ_QUESTIONS = [
+      {
+        category: "Medication & Treatment Claims",
+        prompt: "You search online for information about a common prescription medication. Which source is more reliable?",
+        cards: [
+          {
+            letter: "A",
+            platform: "TikTok • @FitDetoxDaily • 1.2M views",
+            badgeTone: "social",
+            content: "\"Doctors don't want you to know this! Ditch your meds and try this 3-ingredient morning flush to reset your body in 48 hours.\"",
+            isCorrect: false
+          },
+          {
+            letter: "B",
+            platform: "YouTube • Drug Talk — Pharmacist-Led",
+            badgeTone: "clinical",
+            content: "Licensed pharmacist breaks down how a common prescription works, typical side effects, and what questions to ask your doctor or pharmacist.",
+            isCorrect: true
+          }
+        ],
+        feedback: "Catchy social media claims are easy to repeat without checking, and much of the health info online is unedited (Cameron & McGowan, 2015). Clinician- and pharmacist-led educational channels help counter misinformation with qualified, evidence-based explanations."
+      },
+      {
+        category: "Evaluating a Health Website",
+        prompt: "You're looking up symptoms on your phone. Which website gives you a stronger sign of credibility?",
+        cards: [
+          {
+            letter: "A",
+            platform: "Wellness Blog • NaturalCureNow.org",
+            badgeTone: "warning",
+            content: "No author listed. Heavy pop-up ads for 'miracle' supplements. Claims 100% cure rate based on user testimonials.",
+            isCorrect: false
+          },
+          {
+            letter: "B",
+            platform: "Clinician-Reviewed Public Health Portal",
+            badgeTone: "clinical",
+            content: "Displays a clinician-reviewed verification badge (similar to the UK's NHS Information Standard or Singapore's HealthHub), lists medical reviewers, and includes a last-updated date.",
+            isCorrect: true
+          }
+        ],
+        feedback: "Verification badges like the UK's NHS icon help readers spot clinician-reviewed content (Cameron & McGowan, 2015). Checking who wrote, reviewed, and funded a page is a core critical health literacy skill (World Health Organization, 2018)."
+      },
+      {
+        category: "Fitness & Nutrition Advice",
+        prompt: "A student asks which health message is better backed by Canadian health promotion principles.",
+        cards: [
+          {
+            letter: "A",
+            platform: "Viral Fitness Post",
+            badgeTone: "social",
+            content: "\"Move more, eat less.\" Health is 100% about personal willpower—anyone can do it if they just try harder.",
+            isCorrect: false
+          },
+          {
+            letter: "B",
+            platform: "School & Community Health Guide",
+            badgeTone: "education",
+            content: "Recognizes that physical activity and diet are shaped by income, culture, education, home life, and local environments—and focuses on building supportive school and community programs.",
+            isCorrect: true
+          }
+        ],
+        feedback: "Simple slogans like \"move more, eat less\" ignore culture, income, education, and home life (Cameron & McGowan, 2015). Effective health promotion looks beyond individual willpower to environmental, socioeconomic, political, and cultural conditions (Health Canada, 1997)."
+      },
+      {
+        category: "Medical Advice vs. Everyday Tips",
+        prompt: "You're taking prescribed medication from your doctor for acid reflux, and a co-worker suggests sipping alkaline water all day for your cough. What's the most grounded approach?",
+        cards: [
+          {
+            letter: "A",
+            platform: "Option A • All-or-Nothing Switch",
+            badgeTone: "neutral",
+            content: "Stop taking your prescribed medication right away and switch completely to alkaline water.",
+            isCorrect: false
+          },
+          {
+            letter: "B",
+            platform: "Option B • Balanced & Skeptical",
+            badgeTone: "neutral",
+            content: "Keep following your doctor's prescribed plan, and treat everyday tips from co-workers with healthy skepticism—checking that they're safe before trying them alongside medical care.",
+            isCorrect: true
+          },
+          {
+            letter: "C",
+            platform: "Option C • Total Dismissal",
+            badgeTone: "neutral",
+            content: "Ignore every health conversation with friends or co-workers, since nothing outside a clinic can ever be useful.",
+            isCorrect: false
+          }
+        ],
+        feedback: "Mixing medical care with everyday conversation is common. The key is anchoring decisions in trusted clinical advice while applying healthy skepticism to informal tips—never replacing prescribed treatment without talking to a clinician."
+      },
+      {
+        category: "Making Verification Work for Youth",
+        prompt: "If Canada introduced an NHS-style verification icon for health websites, what else is needed so it actually helps students and youth?",
+        cards: [
+          {
+            letter: "A",
+            platform: "Tool-Only Approach",
+            badgeTone: "neutral",
+            content: "Just launching the icon—kids will automatically recognize it and ignore social media trends.",
+            isCorrect: false
+          },
+          {
+            letter: "B",
+            platform: "Education & Mentorship Approach",
+            badgeTone: "education",
+            content: "Pairing trusted verification tools with parents and teachers supervising media and actively teaching students how to verify sources in school.",
+            isCorrect: true
+          }
+        ],
+        feedback: "Badges alone can't stop misinformation if people don't know how to evaluate what they watch. Building health literacy—including judging credibility, validity, and reliability—starts through education and school curricula (World Health Organization, 2018)."
+      }
+    ];
+
+    // Application state
+    let currentIndex = 0;
+    let score = 0;
+    let isLocked = false;
+
+    // DOM Element References
+    const elements = {
+      liveScorePill: document.getElementById('live-score-pill'),
+      liveScoreValue: document.getElementById('live-score-value'),
+      progressWrapper: document.getElementById('progress-wrapper'),
+      progressLabel: document.getElementById('progress-label'),
+      categoryLabel: document.getElementById('category-label'),
+      progressBar: document.getElementById('progress-bar'),
+      quizStage: document.getElementById('quiz-stage'),
+      questionPrompt: document.getElementById('question-prompt'),
+      cardsContainer: document.getElementById('cards-container'),
+      feedbackBox: document.getElementById('feedback-box'),
+      feedbackIcon: document.getElementById('feedback-icon'),
+      feedbackStatus: document.getElementById('feedback-status'),
+      feedbackText: document.getElementById('feedback-text'),
+      nextActionRow: document.getElementById('next-action-row'),
+      nextBtn: document.getElementById('next-btn'),
+      nextBtnLabel: document.getElementById('next-btn-label'),
+      resultsStage: document.getElementById('results-stage'),
+      finalScoreNum: document.getElementById('final-score-num'),
+      finalHeadline: document.getElementById('final-headline'),
+      finalMessage: document.getElementById('final-message'),
+      retakeBtn: document.getElementById('retake-btn'),
+      errorBox: document.getElementById('error-box')
+    };
+
+    /**
+     * Returns an appropriate inline SVG icon based on the source card's badge tone.
+     */
+    function getPlatformIcon(tone) {
+      if (tone === 'clinical') {
+        return `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+      }
+      if (tone === 'social') {
+        return `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`;
+      }
+      if (tone === 'warning') {
+        return `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>`;
+      }
+      if (tone === 'education') {
+        return `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>`;
+      }
+      return `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>`;
+    }
+
+    /**
+     * Renders the current question and its clickable Source Cards.
+     */
+    function renderQuestion() {
+      try {
+        const q = QUIZ_QUESTIONS[currentIndex];
+        isLocked = false;
+
+        // Update progress bar & header metadata
+        const total = QUIZ_QUESTIONS.length;
+        elements.progressLabel.textContent = `Question ${currentIndex + 1} of ${total}`;
+        elements.categoryLabel.textContent = q.category;
+        elements.progressBar.style.width = `${((currentIndex + 1) / total) * 100}%`;
+        elements.liveScoreValue.textContent = score;
+
+        // Update prompt
+        elements.questionPrompt.textContent = q.prompt;
+
+        // Reset feedback and next button
+        elements.feedbackBox.classList.add('hidden');
+        elements.nextActionRow.classList.add('hidden');
+        elements.cardsContainer.innerHTML = '';
+
+        // Build each clickable source card
+        q.cards.forEach((card, cardIdx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.dataset.index = cardIdx;
+          btn.className = [
+            'source-card w-full text-left p-4 sm:p-5 rounded-xl border border-slate-200 bg-white',
+            'hover:border-[#0f5c6e] hover:shadow-md transition-all duration-150',
+            'focus:outline-none focus:ring-2 focus:ring-[#0f5c6e] focus:ring-offset-1 cursor-pointer group'
+          ].join(' ');
+
+          btn.innerHTML = `
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-700 group-hover:bg-[#0f5c6e]/10 group-hover:text-[#0f5c6e] transition-colors">
+                ${getPlatformIcon(card.badgeTone)}
+                <span>${card.platform}</span>
+              </span>
+              <span class="card-status-badge inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-slate-100 text-slate-600 group-hover:bg-[#0f5c6e] group-hover:text-white transition-colors shrink-0">
+                ${card.letter}
+              </span>
+            </div>
+            <p class="text-sm sm:text-[15px] text-slate-700 leading-relaxed">
+              ${card.content}
+            </p>
+          `;
+
+          btn.addEventListener('click', () => handleSelection(cardIdx));
+          elements.cardsContainer.appendChild(btn);
+        });
+      } catch (err) {
+        console.error('Error rendering question:', err);
+        showError();
+      }
+    }
+
+    /**
+     * Handles user card selection, locks choices, updates styling, and reveals feedback.
+     */
+    function handleSelection(selectedIdx) {
+      if (isLocked) return;
+      isLocked = true;
+
+      try {
+        const q = QUIZ_QUESTIONS[currentIndex];
+        const chosenCard = q.cards[selectedIdx];
+        const isCorrect = chosenCard.isCorrect;
+
+        if (isCorrect) {
+          score += 1;
+          elements.liveScoreValue.textContent = score;
+        }
+
+        // Update all cards to locked + revealed states
+        const cardButtons = elements.cardsContainer.querySelectorAll('.source-card');
+        cardButtons.forEach((btn, idx) => {
+          const cardData = q.cards[idx];
+          const statusBadge = btn.querySelector('.card-status-badge');
+
+          btn.disabled = true;
+          btn.classList.remove('hover:border-[#0f5c6e]', 'hover:shadow-md', 'cursor-pointer');
+          btn.classList.add('cursor-default');
+
+          if (cardData.isCorrect) {
+            // Highlight correct card in soft emerald/mint
+            btn.classList.remove('bg-white', 'border-slate-200');
+            btn.classList.add('bg-[#e8f5ee]', 'border-[#166534]', 'ring-1', 'ring-[#166534]/30');
+            statusBadge.className = 'card-status-badge inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#166534] text-white shrink-0';
+            statusBadge.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`;
+          } else if (idx === selectedIdx && !cardData.isCorrect) {
+            // Highlight selected wrong card in soft coral/red
+            btn.classList.remove('bg-white', 'border-slate-200');
+            btn.classList.add('bg-[#fef2f2]', 'border-[#991b1b]', 'ring-1', 'ring-[#991b1b]/30');
+            statusBadge.className = 'card-status-badge inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#991b1b] text-white shrink-0';
+            statusBadge.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>`;
+          } else {
+            // Dim unselected incorrect cards
+            btn.classList.add('opacity-55', 'bg-slate-50');
+          }
+        });
+
+        // Style and populate the "Why?" feedback box
+        elements.feedbackBox.classList.remove(
+          'hidden',
+          'bg-[#e8f5ee]', 'border-[#166534]/30', 'text-[#166534]',
+          'bg-[#fef2f2]', 'border-[#991b1b]/30', 'text-[#991b1b]'
+        );
+
+        if (isCorrect) {
+          elements.feedbackBox.classList.add('bg-[#e8f5ee]', 'border-[#166534]/30', 'text-[#166534]');
+          elements.feedbackStatus.textContent = 'Correct!';
+          elements.feedbackIcon.innerHTML = `<svg class="w-5 h-5 text-[#166534]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+        } else {
+          elements.feedbackBox.classList.add('bg-[#fef2f2]', 'border-[#991b1b]/30', 'text-[#991b1b]');
+          elements.feedbackStatus.textContent = 'Not quite';
+          elements.feedbackIcon.innerHTML = `<svg class="w-5 h-5 text-[#991b1b]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+        }
+
+        elements.feedbackText.textContent = q.feedback;
+
+        // Show Next Question / View Results button
+        const isLastQuestion = currentIndex === QUIZ_QUESTIONS.length - 1;
+        elements.nextBtnLabel.textContent = isLastQuestion ? 'See Results' : 'Next Question';
+        elements.nextActionRow.classList.remove('hidden');
+      } catch (err) {
+        console.error('Error handling selection:', err);
+        showError();
+      }
+    }
+
+    /**
+     * Advances to the next question or displays the end screen.
+     */
+    function handleNext() {
+      if (currentIndex < QUIZ_QUESTIONS.length - 1) {
+        currentIndex += 1;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    /**
+     * Displays the final score, tailored encouragement message, 3-step takeaway, and APA references.
+     */
+    function showResults() {
+      try {
+        elements.quizStage.classList.add('hidden');
+        elements.progressWrapper.classList.add('hidden');
+        elements.liveScorePill.classList.add('hidden');
+        elements.resultsStage.classList.remove('hidden');
+
+        elements.finalScoreNum.textContent = score;
+
+        if (score === 5) {
+          elements.finalHeadline.textContent = 'Sharp Critical Eye!';
+          elements.finalMessage.textContent = 'You spotted every credible source and grounded health promotion approach. You have a strong toolkit for navigating online health information and helping others do the same.';
+        } else if (score >= 3) {
+          elements.finalHeadline.textContent = 'Strong Health Literacy Instincts!';
+          elements.finalMessage.textContent = 'You caught most of the key credibility signals. Keep applying a quick source check whenever a catchy health claim pops up on your feed.';
+        } else {
+          elements.finalHeadline.textContent = 'Good Practice Run!';
+          elements.finalMessage.textContent = 'Online health misinformation is designed to sound convincing. Use the 3-step check below as a quick guide, and try the quiz again to reinforce the key signals.';
+        }
+      } catch (err) {
+        console.error('Error showing results:', err);
+        showError();
+      }
+    }
+
+    /**
+     * Resets the quiz smoothly back to Question 1.
+     */
+    function resetQuiz() {
+      currentIndex = 0;
+      score = 0;
+      isLocked = false;
+
+      elements.resultsStage.classList.add('hidden');
+      elements.quizStage.classList.remove('hidden');
+      elements.progressWrapper.classList.remove('hidden');
+      elements.liveScorePill.classList.remove('hidden');
+
+      renderQuestion();
+    }
+
+    /**
+     * Displays a clean inline error message if something unexpected fails.
+     */
+    function showError() {
+      elements.quizStage.classList.add('hidden');
+      elements.resultsStage.classList.add('hidden');
+      elements.errorBox.classList.remove('hidden');
+    }
+
+    // Event Listeners
+    elements.nextBtn.addEventListener('click', handleNext);
+    elements.retakeBtn.addEventListener('click', resetQuiz);
+
+    // Initialize quiz on load
+    renderQuestion();
+  </script>
+</body>
+</html>
